@@ -4,8 +4,8 @@
         display: none;
       }
 
-    /* Desktop: show menu expanded above copyright */
-    @media (min-width: 769px) {
+    /* Desktop/tablet: show menu expanded above copyright */
+    @media (min-width: 481px) {
       .sidebar-nav summary {
         display: none;
       }
@@ -41,7 +41,7 @@
     }
 
     /* Mobile: compact header with dropdown menu */
-    @media (max-width: 768px) {
+    @media (max-width: 480px) {
       .hideable {
         display: none;
       }
@@ -172,7 +172,7 @@
   <script type="module" async>
       // Open menu on desktop, closed on mobile
       const mobileMenu = document.getElementById('mobile-menu');
-      if (window.innerWidth > 768) {
+      if (window.innerWidth > 480) {
         mobileMenu.setAttribute('open', '');
       }
   </script>
