@@ -1,10 +1,10 @@
-# hyde-club
+# hugo-theme-hyde-club
 
 A Hugo theme for small clubs and community organizations, extending [spf13/hyde](https://github.com/spf13/hyde).
 
 ## Features
 
-- Responsive sidebar: full flex layout on desktop, compact dropdown on mobile
+- Responsive sidebar: full flex layout on desktop, compact dropdown on mobile (480px breakpoint)
 - PWA support (manifest, apple-mobile-web-app meta tags)
 - `private` front matter param to noindex pages
 - Event schema.org structured data (triggered by `event: true` in front matter)
@@ -45,11 +45,11 @@ In your site's `hugo.yaml`:
 ```yaml
 module:
   imports:
-    - path: github.com/orangeru-work/hyde-club
+    - path: github.com/orangeru-work/hugo-theme-hyde-club
 ```
 
 In your site's `go.mod`:
 
 ```
-require github.com/orangeru-work/hyde-club v0.1.0
+require github.com/orangeru-work/hugo-theme-hyde-club v0.1.0
 ```
