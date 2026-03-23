@@ -1,0 +1,28 @@
+{{ partial "landing-head.html" . }}
+  <body>
+      <div style="background-color: var(--sidebar-bg-color, #333);">
+          <img src="{{ if .Page.Params.Logo }}{{ .Page.Params.Logo }}{{ else }}/favicon.png{{ end }}"
+          alt="Logo"
+          style="display: flex;
+                margin-left: auto;
+                margin-right: auto;
+                padding: 10px;
+                max-width: 450pt;
+                max-height: 200pt;"/>
+      </div>
+      <div class="club-logo">
+        <a href="{{ .Site.BaseURL }}">
+          <img src="{{ .Site.Params.logo }}" alt="{{ .Site.Title }}" width="150px" style="float: left; margin-left: 10px;" />
+        </a>
+      </div>
+
+    <main class="content container">
+    {{ block "main" . -}}{{- end }}
+    </main>
+
+    {{ if not hugo.IsServer }}
+      {{ template "_internal/google_analytics.html" . }}
+    {{ end }}
+    <p>{{ with .Site.Params.copyright }}{{.}}{{ else }}&copy; {{ now.Format "2006"}}. All rights reserved. {{end}}</p>
+  </body>
+</html>

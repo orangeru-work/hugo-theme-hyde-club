@@ -1,0 +1,179 @@
+<aside class="sidebar">
+  <style>
+    #homeimg {
+        display: none;
+      }
+
+    /* Desktop: show menu expanded above copyright */
+    @media (min-width: 769px) {
+      .sidebar-nav summary {
+        display: none;
+      }
+      .sidebar-nav ul {
+        display: block !important;
+      }
+      .sidebar-sticky {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        padding-top: 2rem;
+      }
+      .logo-section {
+        flex: 0 0 auto;
+        margin-bottom: 2rem;
+      }
+      .menu-section {
+        flex: 0 0 auto;
+      }
+      .icons-section {
+        flex: 0 0 auto;
+        margin-top: 1.5rem;
+      }
+      .copyright-section {
+        flex: 1 1 auto;
+        display: flex;
+        align-items: flex-end;
+        padding-bottom: 1rem;
+      }
+      .menu-wrapper {
+        width: 100%;
+      }
+    }
+
+    /* Mobile: compact header with dropdown menu */
+    @media (max-width: 768px) {
+      .hideable {
+        display: none;
+      }
+
+      .sidebar {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0.5rem 1rem;
+      }
+
+      .sidebar-sticky {
+        padding: 0;
+        width: 100%;
+        min-height: auto;
+      }
+
+      .sidebar-sticky::after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      .logo {
+        width: 100px;
+        float: left;
+      }
+
+      #homeimg {
+        display: block;
+        align-self: center;
+      }
+      #homeword {
+        display: none;
+      }
+
+      .menu-wrapper {
+        width: 60%;
+        float: right;
+        position: relative;
+      }
+      .sidebar-nav {
+        text-align: right;
+      }
+
+      .sidebar-nav ul {
+        background-color: var(--sidebar-mobile-menu-bg, rgba(0, 0, 0, 0.85));
+        padding: 1rem;
+        border-radius: 4px;
+        margin-top: 0.5rem;
+        list-style: none;
+        position: absolute;
+        right: 0;
+        top: 100%;
+        min-width: 200px;
+        z-index: 1000;
+        pointer-events: auto;
+      }
+
+      .sidebar-nav li {
+        display: block;
+        margin: 0;
+        float: none;
+        position: relative;
+        z-index: 1001;
+      }
+
+      .sidebar-nav li a {
+        display: block;
+        padding: 0.5rem 1rem;
+        text-align: left;
+        float: none;
+        position: relative;
+        z-index: 1002;
+        pointer-events: auto;
+        cursor: pointer;
+      }
+
+      .sidebar-nav summary {
+        display: block;
+        cursor: pointer;
+        text-align: right;
+      }
+      .sidebar-nav summary::after {
+        content: "㆔";
+        font-size: 1.5rem;
+      }
+      details[open] > summary::after {
+        transform: rotate(90deg);
+      }
+
+      .icons-section {
+        clear: both;
+        padding-top: 0.5rem;
+      }
+
+      .copyright-section {
+        display: none;
+      }
+    }
+  </style>
+  <div class="container sidebar-sticky">
+    <div class="logo logo-section"><a href="{{ .Site.BaseURL }}">
+      <img class="hideable" src="{{ .Site.Params.logo }}" alt="{{ .Site.Title }}" width="250pt" /></a>
+    </div>
+    <div class="menu-wrapper">
+      <nav>
+        <details class="sidebar-nav" id="mobile-menu">
+          <summary></summary>
+          <ul class="sidebar-nav menu-section">
+            <li id="homeword"><a href="{{ .Site.BaseURL }}">Home</a></li>
+            {{ range .Site.Menus.main -}}
+            <li><a href="{{.URL}}">{{ .Name }}</a></li>
+            {{- end }}
+          </ul>
+        </details>
+      </nav>
+    </div>
+    <div id="homeimg"><a href="{{ .Site.BaseURL }}"><img src="{{ .Site.Params.logo }}" alt="{{ .Site.Title }}" width="100pt" /></a></div>
+    <div class="icons-section">
+      {{ partial "hook_sidebar_icons.html" . }}
+    </div>
+    <div class="copyright-section">
+      <p class="hideable">{{ with .Site.Params.copyright }}{{.}}{{ else }}&copy; {{ now.Format "2006"}}. All rights reserved. {{end}}<br>
+      <a style="font-size: small; opacity: 80%;" href="/privacy">Privacy Policy</a></p>
+    </div>
+  </div>
+  <script type="module" async>
+      // Open menu on desktop, closed on mobile
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (window.innerWidth > 768) {
+        mobileMenu.setAttribute('open', '');
+      }
+  </script>
+</aside>

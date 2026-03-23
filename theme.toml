@@ -1,0 +1,16 @@
+name = "Hyde Club"
+license = "MIT"
+licenselink = "https://github.com/orangeru-work/hyde-club/blob/master/LICENSE.md"
+description = "A Hugo theme for small clubs and community organizations, extending spf13/hyde with responsive mobile nav, PWA support, and hook-based extensibility."
+tags = ["blog", "club", "community", "responsive"]
+features = ["responsive", "mobile-nav", "pwa", "hooks"]
+min_version = "0.120.0"
+
+[author]
+    name = "orangeru-work"
+    homepage = "https://github.com/orangeru-work"
+
+[original]
+    author = "spf13"
+    homepage = "http://spf13.com"
+    repo = "https://github.com/spf13/hyde"
