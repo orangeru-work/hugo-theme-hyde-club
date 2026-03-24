@@ -1,3 +1,3 @@
 module:
-  imports:
-    - path: github.com/spf13/hyde
+  hugoVersion:
+    min: "0.120.0"
