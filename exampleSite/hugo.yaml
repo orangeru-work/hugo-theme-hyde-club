@@ -13,7 +13,7 @@ markup:
 
 Params:
   description: "Example site for hugo-theme-hyde-club"
-  themeColor: "theme-base-08"
+  sidebarBgColor: "#516d21"
   logo: "/favicon.png"
   landingBgColor: "#2a6496"
   meta:
