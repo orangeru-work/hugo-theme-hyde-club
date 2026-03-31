@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Home on Hyde Club Example</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content in Home on Hyde Club Example</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 01 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello World</title>
+      <link>http://localhost:1313/posts/hello-world/</link>
+      <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/hello-world/</guid>
+      <description>&lt;p&gt;Welcome to the first post on the Hyde Club example site.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Results</title>
+      <link>http://localhost:1313/spring-challenge/results/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/spring-challenge/results/</guid>
+      <description>&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Place&lt;/th&gt;&#xA;          &lt;th&gt;Member&lt;/th&gt;&#xA;          &lt;th&gt;Points&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;1st&lt;/td&gt;&#xA;          &lt;td&gt;Alice&lt;/td&gt;&#xA;          &lt;td&gt;42&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;2nd&lt;/td&gt;&#xA;          &lt;td&gt;Bob&lt;/td&gt;&#xA;          &lt;td&gt;38&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;3rd&lt;/td&gt;&#xA;          &lt;td&gt;Carol&lt;/td&gt;&#xA;          &lt;td&gt;31&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;</description>
+    </item>
+    <item>
+      <title>Rules</title>
+      <link>http://localhost:1313/spring-challenge/rules/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/spring-challenge/rules/</guid>
+      <description>&lt;ol&gt;&#xA;&lt;li&gt;All members are eligible to participate.&lt;/li&gt;&#xA;&lt;li&gt;Events run from March through May.&lt;/li&gt;&#xA;&lt;li&gt;Points are awarded for each completed event.&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
+    </item>
+  </channel>
+</rss>
