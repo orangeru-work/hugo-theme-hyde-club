@@ -67,5 +67,12 @@
   </script>
   {{ end }}
 
+  {{ with .Site.Params.sidebarBgColor }}
+  <style>
+    .sidebar { background-color: {{ . }}; }
+    .content a, .related-posts li a:hover { color: {{ . }}; }
+  </style>
+  {{ end }}
+
   {{ partial "hook_head_end.html" . }}
 </head>

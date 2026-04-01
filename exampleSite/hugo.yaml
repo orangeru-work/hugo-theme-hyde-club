@@ -1,0 +1,29 @@
+baseURL: 'http://localhost:1313/'
+languageCode: 'en-us'
+title: 'Hyde Club Example'
+
+module:
+  imports:
+    - path: github.com/orangeru-work/hugo-theme-hyde-club
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+Params:
+  description: "Example site for hugo-theme-hyde-club"
+  sidebarBgColor: "#516d21"
+  logo: "/favicon.png"
+  landingBgColor: "#2a6496"
+  meta:
+    favicon: true
+
+Menus:
+  main:
+    - Weight: 10
+      Name: Spring Challenge
+      Url: /spring-challenge
+    - Weight: 20
+      Name: Posts
+      Url: /posts
