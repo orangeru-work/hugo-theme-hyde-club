@@ -44,7 +44,8 @@ Params:
 Behavior:
 
 - `type: linear` applies a right-to-left gradient on desktop and bottom-to-top on mobile.
-- `type: radial` applies a radial gradient centered on the logo position.
+- `type: radial` applies a reversed radial gradient centered on the logo position (`endColor` at the center).
+- Both gradient modes are intentionally intensified so the contrast/highlight is more pronounced.
 - `startColor` and `endColor` default to the active theme palette when omitted.
 - If `sidebarGradient` is unset, the sidebar uses `sidebarBgColor` (or Hyde defaults if that is unset).
 

@@ -118,17 +118,17 @@
 
     {{- if eq $gradientType "linear" }}
     .sidebar {
-      background-image: linear-gradient(to left, {{ $gradientStart }}, {{ $gradientEnd }});
+      background-image: linear-gradient(to left, {{ $gradientStart }} 0%, {{ $gradientEnd }} 50%, {{ $gradientEnd }} 100%);
       background-repeat: no-repeat;
     }
     @media (max-width: 480px) {
       .sidebar {
-        background-image: linear-gradient(to top, {{ $gradientStart }}, {{ $gradientEnd }});
+        background-image: linear-gradient(to top, {{ $gradientStart }} 0%, {{ $gradientEnd }} 50%, {{ $gradientEnd }} 100%);
       }
     }
     {{- else if eq $gradientType "radial" }}
     .sidebar {
-      background-image: radial-gradient(circle at var(--sidebar-radial-origin, 50% 12%), {{ $gradientStart }} 0%, {{ $gradientEnd }} 72%);
+      background-image: radial-gradient(circle at var(--sidebar-radial-origin, 50% 12%), {{ $gradientEnd }} 0%, {{ $gradientEnd }} 36%, {{ $gradientStart }} 72%);
     }
     {{- end }}
   </style>
