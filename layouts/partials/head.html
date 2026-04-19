@@ -69,7 +69,8 @@
 
   {{- $themeClass := lower (printf "%v" .Site.Params.themeColor) -}}
   {{- $themeStartColor := "#202020" -}}
-  {{- $themeEndColor := "#ffffff" -}}
+  {{- $pageBgColor := default "#ffffff" .Site.Params.pageBgColor -}}
+  {{- $themeEndColor := $pageBgColor -}}
   {{- if eq $themeClass "theme-base-08" -}}
     {{- $themeStartColor = "#ac4142" -}}
   {{- else if eq $themeClass "theme-base-09" -}}
@@ -101,6 +102,9 @@
   {{- end -}}
 
   <style>
+    body {
+      background-color: {{ $pageBgColor }};
+    }
     .sidebar {
       background-color: {{ $sidebarBgColor }};
     }
