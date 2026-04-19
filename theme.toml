@@ -1,7 +1,7 @@
-name = "Hyde Club"
+name = "Clubhouse"
 license = "MIT"
 licenselink = "https://github.com/orangeru-work/hugo-theme-hyde-club/blob/master/LICENSE.md"
-description = "A Hugo theme for small clubs and community organizations, extending spf13/hyde with responsive mobile nav, PWA support, and hook-based extensibility."
+description = "A Hugo theme for small clubs and community organizations with responsive mobile nav, PWA support, and hook-based extensibility."
 tags = ["blog", "club", "community", "responsive"]
 features = ["responsive", "mobile-nav", "pwa", "hooks"]
 min_version = "0.120.0"

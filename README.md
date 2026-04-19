@@ -1,6 +1,6 @@
-# hugo-theme-hyde-club
+# hugo-theme-clubhouse
 
-A Hugo theme for small clubs and community organizations, extending [spf13/hyde](https://github.com/spf13/hyde).
+A Hugo theme for small clubs and community organizations.
 
 ## Features
 
@@ -24,7 +24,7 @@ Override these in your site's `layouts/partials/` to extend without modifying th
 | Param | Description |
 |---|---|
 | `logo` | Path to logo image shown in sidebar |
-| `themeColor` | Hyde theme color class (e.g. `theme-base-0f`) |
+| `themeColor` | Theme color class (e.g. `theme-base-0f`) |
 | `description` | Site description shown in meta and sidebar |
 | `copyright` | Copyright text (defaults to current year) |
 
@@ -47,6 +47,8 @@ module:
   imports:
     - path: github.com/orangeru-work/hugo-theme-hyde-club
 ```
+
+> **Note:** the module path currently remains `github.com/orangeru-work/hugo-theme-hyde-club` for compatibility.
 
 In your site's `go.mod`:
 

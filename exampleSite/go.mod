@@ -1,4 +1,4 @@
-module example.orangeru.work/hyde-club-example
+module example.orangeru.work/clubhouse-example
 
 go 1.24.4
 

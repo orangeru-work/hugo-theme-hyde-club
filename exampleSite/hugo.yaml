@@ -1,6 +1,6 @@
 baseURL: 'http://localhost:1313/'
 languageCode: 'en-us'
-title: 'Hyde Club Example'
+title: 'Clubhouse Example'
 
 module:
   imports:
@@ -12,7 +12,7 @@ markup:
       unsafe: true
 
 Params:
-  description: "Example site for hugo-theme-hyde-club"
+  description: "Example site for the Clubhouse theme"
   sidebarBgColor: "#516d21"
   logo: "/favicon.png"
   landingBgColor: "#2a6496"
