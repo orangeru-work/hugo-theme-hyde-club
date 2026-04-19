@@ -170,10 +170,44 @@
     </div>
   </div>
   <script type="module" async>
-      // Open menu on desktop, closed on mobile
       const mobileMenu = document.getElementById('mobile-menu');
-      if (window.innerWidth > 480) {
-        mobileMenu.setAttribute('open', '');
+      const sidebarEl = document.querySelector('.sidebar');
+      const desktopLogo = document.querySelector('.logo-section img');
+      const mobileLogo = document.querySelector('#homeimg img');
+
+      function setMobileMenuState() {
+        if (!mobileMenu) return;
+        if (window.innerWidth > 480) {
+          mobileMenu.setAttribute('open', '');
+        } else {
+          mobileMenu.removeAttribute('open');
+        }
       }
+
+      function updateSidebarRadialOrigin() {
+        if (!sidebarEl) return;
+        const isMobile = window.innerWidth <= 480;
+        const logo = isMobile ? mobileLogo : desktopLogo;
+        if (!logo) return;
+
+        const sidebarRect = sidebarEl.getBoundingClientRect();
+        const logoRect = logo.getBoundingClientRect();
+        if (!sidebarRect.width || !sidebarRect.height || !logoRect.width || !logoRect.height) return;
+
+        const x = ((logoRect.left + logoRect.width / 2 - sidebarRect.left) / sidebarRect.width) * 100;
+        const y = ((logoRect.top + logoRect.height / 2 - sidebarRect.top) / sidebarRect.height) * 100;
+        const xClamped = Math.max(0, Math.min(100, x)).toFixed(2);
+        const yClamped = Math.max(0, Math.min(100, y)).toFixed(2);
+        sidebarEl.style.setProperty('--sidebar-radial-origin', `${xClamped}% ${yClamped}%`);
+      }
+
+      function syncSidebarUI() {
+        setMobileMenuState();
+        updateSidebarRadialOrigin();
+      }
+
+      window.addEventListener('resize', syncSidebarUI);
+      window.addEventListener('load', syncSidebarUI);
+      syncSidebarUI();
   </script>
 </aside>

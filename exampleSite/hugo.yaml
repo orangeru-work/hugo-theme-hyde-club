@@ -13,9 +13,14 @@ markup:
 
 Params:
   description: "Example site for hugo-theme-hyde-club"
-  sidebarBgColor: "#516d21"
+  themeColor: "theme-base-0b"
+  pageBgColor: "#ffffff"
+  sidebarGradient:
+    type: linear
   logo: "/favicon.png"
   landingBgColor: "#2a6496"
+  landingGradient:
+    type: linear
   meta:
     favicon: true
 

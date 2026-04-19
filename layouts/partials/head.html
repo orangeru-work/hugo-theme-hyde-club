@@ -67,12 +67,67 @@
   </script>
   {{ end }}
 
-  {{ with .Site.Params.sidebarBgColor }}
+  {{- $themeClass := lower (printf "%v" .Site.Params.themeColor) -}}
+  {{- $themeStartColor := "#202020" -}}
+  {{- $pageBgColor := default "#ffffff" .Site.Params.pageBgColor -}}
+  {{- $themeEndColor := $pageBgColor -}}
+  {{- if eq $themeClass "theme-base-08" -}}
+    {{- $themeStartColor = "#ac4142" -}}
+  {{- else if eq $themeClass "theme-base-09" -}}
+    {{- $themeStartColor = "#d28445" -}}
+  {{- else if eq $themeClass "theme-base-0a" -}}
+    {{- $themeStartColor = "#f4bf75" -}}
+  {{- else if eq $themeClass "theme-base-0b" -}}
+    {{- $themeStartColor = "#90a959" -}}
+  {{- else if eq $themeClass "theme-base-0c" -}}
+    {{- $themeStartColor = "#75b5aa" -}}
+  {{- else if eq $themeClass "theme-base-0d" -}}
+    {{- $themeStartColor = "#6a9fb5" -}}
+  {{- else if eq $themeClass "theme-base-0e" -}}
+    {{- $themeStartColor = "#aa759f" -}}
+  {{- else if eq $themeClass "theme-base-0f" -}}
+    {{- $themeStartColor = "#8f5536" -}}
+  {{- end -}}
+
+  {{- $sidebarBgColor := default $themeStartColor .Site.Params.sidebarBgColor -}}
+  {{- $sidebarLinkColor := default $sidebarBgColor .Site.Params.sidebarLinkColor -}}
+
+  {{- $gradientType := "" -}}
+  {{- $gradientStart := $themeStartColor -}}
+  {{- $gradientEnd := $themeEndColor -}}
+  {{- with .Site.Params.sidebarGradient -}}
+    {{- $gradientType = lower (default "linear" .type) -}}
+    {{- $gradientStart = default $gradientStart .startColor -}}
+    {{- $gradientEnd = default $gradientEnd .endColor -}}
+  {{- end -}}
+
   <style>
-    .sidebar { background-color: {{ . }}; }
-    .content a, .related-posts li a:hover { color: {{ . }}; }
+    body {
+      background-color: {{ $pageBgColor }};
+    }
+    .sidebar {
+      background-color: {{ $sidebarBgColor }};
+    }
+    .content a, .related-posts li a:hover {
+      color: {{ $sidebarLinkColor }};
+    }
+
+    {{- if eq $gradientType "linear" }}
+    .sidebar {
+      background-image: linear-gradient(to right, {{ $gradientStart }} 0%, {{ $gradientEnd }} 100%);
+      background-repeat: no-repeat;
+    }
+    @media (max-width: 480px) {
+      .sidebar {
+        background-image: linear-gradient(to bottom, {{ $gradientStart }} 0%, {{ $gradientEnd }} 100%);
+      }
+    }
+    {{- else if eq $gradientType "radial" }}
+    .sidebar {
+      background-image: radial-gradient(circle at var(--sidebar-radial-origin, 50% 12%), {{ $gradientStart }} 0%, {{ $gradientStart }} 42%, {{ $gradientEnd }} 100%);
+    }
+    {{- end }}
   </style>
-  {{ end }}
 
   {{ partial "hook_head_end.html" . }}
 </head>
