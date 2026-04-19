@@ -27,6 +27,27 @@ Override these in your site's `layouts/partials/` to extend without modifying th
 | `themeColor` | Hyde theme color class (e.g. `theme-base-0f`) |
 | `description` | Site description shown in meta and sidebar |
 | `copyright` | Copyright text (defaults to current year) |
+| `sidebarBgColor` | Solid sidebar fallback color |
+| `sidebarLinkColor` | Optional link color for content links (defaults to `sidebarBgColor`) |
+| `sidebarGradient` | Optional sidebar gradient config (see below) |
+
+## Sidebar gradient config
+
+```yaml
+Params:
+  sidebarGradient:
+    type: linear # linear | logo-radial
+    startColor: "#516d21"
+    endColor: "#2e3f13"
+    logoOriginDesktop: "50% 12%"
+    logoOriginMobile: "22% 18%"
+```
+
+Behavior:
+
+- `type: linear` applies a left-to-right gradient on desktop and top-to-bottom on mobile.
+- `type: logo-radial` applies a radial gradient centered near the logo location (desktop/mobile origins are configurable).
+- If `sidebarGradient` is unset, the sidebar uses `sidebarBgColor` (or Hyde defaults if that is unset).
 
 ## CSS Variable
 

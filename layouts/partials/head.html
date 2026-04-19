@@ -67,12 +67,51 @@
   </script>
   {{ end }}
 
-  {{ with .Site.Params.sidebarBgColor }}
+  {{- $sidebarBgColor := default "#202020" .Site.Params.sidebarBgColor -}}
+  {{- $sidebarLinkColor := default $sidebarBgColor .Site.Params.sidebarLinkColor -}}
+  {{- $gradientType := "" -}}
+  {{- $gradientStart := $sidebarBgColor -}}
+  {{- $gradientEnd := $sidebarBgColor -}}
+  {{- $logoOriginDesktop := "50% 12%" -}}
+  {{- $logoOriginMobile := "22% 18%" -}}
+  {{- with .Site.Params.sidebarGradient -}}
+    {{- $gradientType = default "linear" .type -}}
+    {{- $gradientStart = default $gradientStart .startColor -}}
+    {{- $gradientEnd = default $gradientStart .endColor -}}
+    {{- $logoOriginDesktop = default $logoOriginDesktop .logoOriginDesktop -}}
+    {{- $logoOriginMobile = default $logoOriginMobile .logoOriginMobile -}}
+  {{- end -}}
+
   <style>
-    .sidebar { background-color: {{ . }}; }
-    .content a, .related-posts li a:hover { color: {{ . }}; }
+    .sidebar {
+      background-color: {{ $sidebarBgColor }};
+    }
+    .content a, .related-posts li a:hover {
+      color: {{ $sidebarLinkColor }};
+    }
+
+    {{- if eq $gradientType "linear" }}
+    .sidebar {
+      background-image: linear-gradient(to right, {{ $gradientStart }}, {{ $gradientEnd }});
+      background-repeat: no-repeat;
+    }
+    @media (max-width: 480px) {
+      .sidebar {
+        background-image: linear-gradient(to bottom, {{ $gradientStart }}, {{ $gradientEnd }});
+      }
+    }
+    {{- else if or (eq $gradientType "logo-radial") (eq $gradientType "radial-logo") }}
+    .sidebar {
+      background-image: radial-gradient(circle at {{ $logoOriginDesktop }}, {{ $gradientStart }} 0%, {{ $gradientEnd }} 72%);
+      background-repeat: no-repeat;
+    }
+    @media (max-width: 480px) {
+      .sidebar {
+        background-image: radial-gradient(circle at {{ $logoOriginMobile }}, {{ $gradientStart }} 0%, {{ $gradientEnd }} 72%);
+      }
+    }
+    {{- end }}
   </style>
-  {{ end }}
 
   {{ partial "hook_head_end.html" . }}
 </head>
