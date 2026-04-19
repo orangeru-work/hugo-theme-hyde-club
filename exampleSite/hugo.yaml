@@ -19,6 +19,8 @@ Params:
     type: linear
   logo: "/favicon.png"
   landingBgColor: "#2a6496"
+  landingGradient:
+    type: linear
   meta:
     favicon: true
 

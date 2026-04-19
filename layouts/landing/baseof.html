@@ -1,14 +1,81 @@
 {{ partial "landing-head.html" . }}
+{{- $themeClass := lower (printf "%v" .Site.Params.themeColor) -}}
+{{- $themeStartColor := "#202020" -}}
+{{- if eq $themeClass "theme-base-08" -}}
+  {{- $themeStartColor = "#ac4142" -}}
+{{- else if eq $themeClass "theme-base-09" -}}
+  {{- $themeStartColor = "#d28445" -}}
+{{- else if eq $themeClass "theme-base-0a" -}}
+  {{- $themeStartColor = "#f4bf75" -}}
+{{- else if eq $themeClass "theme-base-0b" -}}
+  {{- $themeStartColor = "#90a959" -}}
+{{- else if eq $themeClass "theme-base-0c" -}}
+  {{- $themeStartColor = "#75b5aa" -}}
+{{- else if eq $themeClass "theme-base-0d" -}}
+  {{- $themeStartColor = "#6a9fb5" -}}
+{{- else if eq $themeClass "theme-base-0e" -}}
+  {{- $themeStartColor = "#aa759f" -}}
+{{- else if eq $themeClass "theme-base-0f" -}}
+  {{- $themeStartColor = "#8f5536" -}}
+{{- end -}}
+
+{{- $pageBgColor := default "#ffffff" .Site.Params.pageBgColor -}}
+{{- $landingBgColor := default (default $themeStartColor .Site.Params.landingBgColor) .Params.landingBgColor -}}
+
+{{- $landingGradientConfig := dict -}}
+{{- with .Site.Params.landingGradient -}}
+  {{- $landingGradientConfig = . -}}
+{{- end -}}
+{{- with .Params.landingGradient -}}
+  {{- $landingGradientConfig = merge $landingGradientConfig . -}}
+{{- end -}}
+
+{{- $landingGradientType := "" -}}
+{{- $landingGradientStart := $landingBgColor -}}
+{{- $landingGradientEnd := $pageBgColor -}}
+{{- if isset $landingGradientConfig "type" -}}
+  {{- $landingGradientType = lower (printf "%v" (index $landingGradientConfig "type")) -}}
+{{- end -}}
+{{- if isset $landingGradientConfig "startColor" -}}
+  {{- $landingGradientStart = printf "%v" (index $landingGradientConfig "startColor") -}}
+{{- end -}}
+{{- if isset $landingGradientConfig "endColor" -}}
+  {{- $landingGradientEnd = printf "%v" (index $landingGradientConfig "endColor") -}}
+{{- end -}}
+
+{{- $heroLogo := or .Params.logo .Params.Logo .Site.Params.logo "/favicon.png" -}}
   <body>
-      <div style="background-color: {{ default "#333333" .Site.Params.landingBgColor }};">
-          <img src="{{ if .Page.Params.Logo }}{{ .Page.Params.Logo }}{{ else }}/favicon.png{{ end }}"
-          alt="Logo"
-          style="display: flex;
-                margin-left: auto;
-                margin-right: auto;
-                padding: 10px;
-                max-width: 450pt;
-                max-height: 200pt;"/>
+      <style>
+        body {
+          background-color: {{ $pageBgColor }};
+        }
+        .landing-hero {
+          background-color: {{ $landingBgColor }};
+          {{- if eq $landingGradientType "linear" }}
+          background-image: linear-gradient(to right, {{ $landingGradientStart }} 0%, {{ $landingGradientEnd }} 100%);
+          background-repeat: no-repeat;
+          {{- else if eq $landingGradientType "radial" }}
+          background-image: radial-gradient(circle at var(--landing-radial-origin, 50% 50%), {{ $landingGradientStart }} 0%, {{ $landingGradientStart }} 42%, {{ $landingGradientEnd }} 100%);
+          {{- end }}
+        }
+        @media (max-width: 480px) {
+          .landing-hero {
+            {{- if eq $landingGradientType "linear" }}
+            background-image: linear-gradient(to bottom, {{ $landingGradientStart }} 0%, {{ $landingGradientEnd }} 100%);
+            {{- end }}
+          }
+        }
+        .landing-hero-logo {
+          display: flex;
+          margin-left: auto;
+          margin-right: auto;
+          padding: 10px;
+          max-width: 450pt;
+          max-height: 200pt;
+        }
+      </style>
+      <div class="landing-hero">
+          <img class="landing-hero-logo" src="{{ $heroLogo }}" alt="Logo" />
       </div>
       <div class="club-logo">
         <a href="{{ .Site.BaseURL }}">
@@ -24,5 +91,26 @@
       {{ template "_internal/google_analytics.html" . }}
     {{ end }}
     <p>{{ with .Site.Params.copyright }}{{.}}{{ else }}&copy; {{ now.Format "2006"}}. All rights reserved. {{end}}</p>
+    <script type="module" async>
+      const hero = document.querySelector('.landing-hero');
+      const logo = document.querySelector('.landing-hero-logo');
+
+      function updateLandingRadialOrigin() {
+        if (!hero || !logo) return;
+        const heroRect = hero.getBoundingClientRect();
+        const logoRect = logo.getBoundingClientRect();
+        if (!heroRect.width || !heroRect.height || !logoRect.width || !logoRect.height) return;
+
+        const x = ((logoRect.left + logoRect.width / 2 - heroRect.left) / heroRect.width) * 100;
+        const y = ((logoRect.top + logoRect.height / 2 - heroRect.top) / heroRect.height) * 100;
+        const xClamped = Math.max(0, Math.min(100, x)).toFixed(2);
+        const yClamped = Math.max(0, Math.min(100, y)).toFixed(2);
+        hero.style.setProperty('--landing-radial-origin', `${xClamped}% ${yClamped}%`);
+      }
+
+      window.addEventListener('resize', updateLandingRadialOrigin);
+      window.addEventListener('load', updateLandingRadialOrigin);
+      updateLandingRadialOrigin();
+    </script>
   </body>
 </html>

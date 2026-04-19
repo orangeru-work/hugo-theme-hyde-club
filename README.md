@@ -31,6 +31,8 @@ Override these in your site's `layouts/partials/` to extend without modifying th
 | `sidebarBgColor` | Solid sidebar fallback color |
 | `sidebarLinkColor` | Optional link color for content links (defaults to `sidebarBgColor`) |
 | `sidebarGradient` | Optional sidebar gradient config (see below) |
+| `landingBgColor` | Solid landing hero fallback color |
+| `landingGradient` | Optional landing hero gradient config (see below) |
 
 ## Sidebar gradient config
 
@@ -49,6 +51,41 @@ Behavior:
 - Both gradient modes use a softer transition for less extreme contrast.
 - `startColor` defaults to the active theme color, and `endColor` defaults to `pageBgColor` (white by default) when omitted.
 - If `sidebarGradient` is unset, the sidebar uses `sidebarBgColor` (or Hyde defaults if that is unset).
+
+## Landing gradient config
+
+```yaml
+Params:
+  landingGradient:
+    type: linear # linear | radial
+    startColor: "#2a6496" # optional
+    endColor: "#ffffff"   # optional
+```
+
+Behavior:
+
+- `type: linear` applies a left-to-right gradient on desktop and top-to-bottom on mobile.
+- `type: radial` applies a radial gradient centered on the landing logo.
+- `startColor` defaults to `landingBgColor` (or theme color when unset), and `endColor` defaults to `pageBgColor`.
+- If `landingGradient` is unset, the landing hero uses only `landingBgColor`.
+
+### Front matter overrides (`index.md`)
+
+For landing pages, you can override site-level landing options in that page's front matter (for example `content/<section>/_index.md`):
+
+```yaml
+---
+layout: landing
+landingBgColor: "#1f3654"
+landingGradient:
+  type: radial
+  startColor: "#1f3654"
+  endColor: "#ffffff"
+logo: "/images/landing-logo.png"
+---
+```
+
+Front matter values take precedence over site `Params` for that landing page.
 
 ## CSS Variable
 
