@@ -36,17 +36,16 @@ Override these in your site's `layouts/partials/` to extend without modifying th
 ```yaml
 Params:
   sidebarGradient:
-    type: linear # linear | logo-radial
-    startColor: "#516d21"
-    endColor: "#2e3f13"
-    logoOriginDesktop: "50% 12%"
-    logoOriginMobile: "22% 18%"
+    type: linear # linear | radial
+    startColor: "#516d21" # optional
+    endColor: "#2e3f13"   # optional
 ```
 
 Behavior:
 
 - `type: linear` applies a left-to-right gradient on desktop and top-to-bottom on mobile.
-- `type: logo-radial` applies a radial gradient centered near the logo location (desktop/mobile origins are configurable).
+- `type: radial` applies a radial gradient centered on the logo position.
+- `startColor` and `endColor` default to the active theme palette when omitted.
 - If `sidebarGradient` is unset, the sidebar uses `sidebarBgColor` (or Hyde defaults if that is unset).
 
 ## CSS Variable

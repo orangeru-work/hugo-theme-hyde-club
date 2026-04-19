@@ -67,19 +67,45 @@
   </script>
   {{ end }}
 
-  {{- $sidebarBgColor := default "#202020" .Site.Params.sidebarBgColor -}}
+  {{- $themeClass := lower (printf "%v" .Site.Params.themeColor) -}}
+  {{- $themeStartColor := "#202020" -}}
+  {{- $themeEndColor := "#111111" -}}
+  {{- if eq $themeClass "theme-base-08" -}}
+    {{- $themeStartColor = "#ac4142" -}}
+    {{- $themeEndColor = "#7f2f30" -}}
+  {{- else if eq $themeClass "theme-base-09" -}}
+    {{- $themeStartColor = "#d28445" -}}
+    {{- $themeEndColor = "#9f5e2a" -}}
+  {{- else if eq $themeClass "theme-base-0a" -}}
+    {{- $themeStartColor = "#f4bf75" -}}
+    {{- $themeEndColor = "#b07f36" -}}
+  {{- else if eq $themeClass "theme-base-0b" -}}
+    {{- $themeStartColor = "#90a959" -}}
+    {{- $themeEndColor = "#5f7532" -}}
+  {{- else if eq $themeClass "theme-base-0c" -}}
+    {{- $themeStartColor = "#75b5aa" -}}
+    {{- $themeEndColor = "#3d7b70" -}}
+  {{- else if eq $themeClass "theme-base-0d" -}}
+    {{- $themeStartColor = "#6a9fb5" -}}
+    {{- $themeEndColor = "#3f6e83" -}}
+  {{- else if eq $themeClass "theme-base-0e" -}}
+    {{- $themeStartColor = "#aa759f" -}}
+    {{- $themeEndColor = "#764d6d" -}}
+  {{- else if eq $themeClass "theme-base-0f" -}}
+    {{- $themeStartColor = "#8f5536" -}}
+    {{- $themeEndColor = "#5f3622" -}}
+  {{- end -}}
+
+  {{- $sidebarBgColor := default $themeStartColor .Site.Params.sidebarBgColor -}}
   {{- $sidebarLinkColor := default $sidebarBgColor .Site.Params.sidebarLinkColor -}}
+
   {{- $gradientType := "" -}}
-  {{- $gradientStart := $sidebarBgColor -}}
-  {{- $gradientEnd := $sidebarBgColor -}}
-  {{- $logoOriginDesktop := "50% 12%" -}}
-  {{- $logoOriginMobile := "22% 18%" -}}
+  {{- $gradientStart := $themeStartColor -}}
+  {{- $gradientEnd := $themeEndColor -}}
   {{- with .Site.Params.sidebarGradient -}}
-    {{- $gradientType = default "linear" .type -}}
+    {{- $gradientType = lower (default "linear" .type) -}}
     {{- $gradientStart = default $gradientStart .startColor -}}
-    {{- $gradientEnd = default $gradientStart .endColor -}}
-    {{- $logoOriginDesktop = default $logoOriginDesktop .logoOriginDesktop -}}
-    {{- $logoOriginMobile = default $logoOriginMobile .logoOriginMobile -}}
+    {{- $gradientEnd = default $gradientEnd .endColor -}}
   {{- end -}}
 
   <style>
@@ -100,15 +126,9 @@
         background-image: linear-gradient(to bottom, {{ $gradientStart }}, {{ $gradientEnd }});
       }
     }
-    {{- else if or (eq $gradientType "logo-radial") (eq $gradientType "radial-logo") }}
+    {{- else if eq $gradientType "radial" }}
     .sidebar {
-      background-image: radial-gradient(circle at {{ $logoOriginDesktop }}, {{ $gradientStart }} 0%, {{ $gradientEnd }} 72%);
-      background-repeat: no-repeat;
-    }
-    @media (max-width: 480px) {
-      .sidebar {
-        background-image: radial-gradient(circle at {{ $logoOriginMobile }}, {{ $gradientStart }} 0%, {{ $gradientEnd }} 72%);
-      }
+      background-image: radial-gradient(circle at var(--sidebar-radial-origin, 50% 12%), {{ $gradientStart }} 0%, {{ $gradientEnd }} 72%);
     }
     {{- end }}
   </style>
