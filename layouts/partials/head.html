@@ -118,12 +118,12 @@
 
     {{- if eq $gradientType "linear" }}
     .sidebar {
-      background-image: linear-gradient(to right, {{ $gradientStart }}, {{ $gradientEnd }});
+      background-image: linear-gradient(to left, {{ $gradientStart }}, {{ $gradientEnd }});
       background-repeat: no-repeat;
     }
     @media (max-width: 480px) {
       .sidebar {
-        background-image: linear-gradient(to bottom, {{ $gradientStart }}, {{ $gradientEnd }});
+        background-image: linear-gradient(to top, {{ $gradientStart }}, {{ $gradientEnd }});
       }
     }
     {{- else if eq $gradientType "radial" }}
